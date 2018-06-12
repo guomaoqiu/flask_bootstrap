@@ -6,7 +6,6 @@ __pycache__/
 config.py
 # C extensions
 *.so
-requirements.txt
 migrations/
 # Distribution / packaging
 .Python
