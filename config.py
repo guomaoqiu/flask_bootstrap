@@ -29,9 +29,9 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     db_host = 'db'
-    db_user = 'root'
-    db_pass = 'root'
-    db_name = 'root'
+    db_user = 'devopsdemo'
+    db_pass = '123.com'
+    db_name = 'devopsdemo'
     SQLALCHEMY_DATABASE_URI = 'mysql://' + db_user + ':' + db_pass + '@' + db_host + '/' + db_name
     SQLALCHEMY_ECHO=False #用于显式地禁用或启用查询记录
 
