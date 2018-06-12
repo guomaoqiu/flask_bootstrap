@@ -8,7 +8,7 @@ from livereload import Server
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
-
+manager.add_command("runserver", Server(host = '0.0.0.0'))
 migrate = Migrate(app, db)
 
 
@@ -33,5 +33,5 @@ def dev():
 
 
 if __name__ == '__main__':
-    manager.add_command("runserver", Server(host = '0.0.0.0'))
+    
     manager.run()
