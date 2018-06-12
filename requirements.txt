@@ -38,9 +38,6 @@ gitdb2==2.0.3
 GitPython==2.1.8
 greenlet==0.4.13
 gunicorn==19.7.1
-hmac==20101005
-html5lib==1.0b3
-iron-cache==0.3.2
 iron-celery==0.3.0
 iron-core==1.2.0
 iron-mq==0.9
