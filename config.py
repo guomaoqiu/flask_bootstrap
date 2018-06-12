@@ -12,7 +12,7 @@ class Config:
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USERNAME = '2399447849@qq.com' #os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = 'Guomaoqiu.310963' #os.environ.get('MAIL_PASSWORD')
+    MAIL_PASSWORD = '' #os.environ.get('MAIL_PASSWORD')
     FLASKY_MAIL_SUBJECT_PREFIX = u''
     FLASKY_MAIL_SENDER = '2399447849@qq.com'
     FLASKY_ADMIN = '2399447849@qq.com' # os.environ.get('FANXIANG_ADMIN')
@@ -28,10 +28,10 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    db_host = '127.0.0.1'
-    db_user = 'xiangce'
-    db_pass = 'xiangce'
-    db_name = 'xiangce'
+    db_host = 'db'
+    db_user = 'root'
+    db_pass = 'root'
+    db_name = 'root'
     SQLALCHEMY_DATABASE_URI = 'mysql://' + db_user + ':' + db_pass + '@' + db_host + '/' + db_name
     SQLALCHEMY_ECHO=False #用于显式地禁用或启用查询记录
 
@@ -47,11 +47,9 @@ class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
-
 config = {
     'development': DevelopmentConfig,
     'testing': TestingConfig,
     'production': ProductionConfig,
-
     'default': DevelopmentConfig
 }
