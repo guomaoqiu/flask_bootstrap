@@ -32,4 +32,4 @@ def dev():
 
 
 if __name__ == '__main__':
-    manager.run(host='0.0.0.0')
+    manager.run()
