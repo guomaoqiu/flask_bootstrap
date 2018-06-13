@@ -28,7 +28,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    db_host = 'mysql'
+    db_host = os.environ["MYSQL_DB_HOST"]
     db_user = 'devopsdemo'
     db_pass = '123.com'
     db_name = 'devopsdemo'
