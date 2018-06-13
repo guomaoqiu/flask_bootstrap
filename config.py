@@ -28,12 +28,11 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-#    db_host = 'db'
-#    db_user = 'devopsdemo'
-#    db_pass = '123.com'
-#    db_name = 'devopsdemo'
-#    db_uri = 'mysql://devopsdemo:devopsdemo@db/devopsdemo'
-    SQLALCHEMY_DATABASE_URI = 'mysql://devopsdemo:devopsdemo@db/devopsdemo'
+    db_host = os.environ.get('DB_PORT_3306_TCP_ADDR')
+    db_user = 'devopsdemo'
+    db_pass = '123.com'
+    db_name = 'devopsdemo'
+    SQLALCHEMY_DATABASE_URI = 'mysql://' + db_user + ':' + db_pass + '@' + db_host + '/' + db_name
     SQLALCHEMY_ECHO=False #用于显式地禁用或启用查询记录
 
 
