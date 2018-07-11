@@ -16,9 +16,9 @@ sys.setdefaultencoding('utf-8')
 def before_request():
     if current_user.is_authenticated:
         current_user.ping()
-        print request.endpoint[:5]
-        print request.endpoint
-        print current_user.confirmed
+        # print request.endpoint[:5]
+        # print request.endpoint
+        # print current_user.confirmed
         if not current_user.confirmed \
                 and request.endpoint[:5] != 'auth.' \
                 and request.endpoint != 'static':
@@ -39,6 +39,7 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user is not None and user.verify_password(form.password.data):
             login_user(user, form.remember_me.data)
+            flash('登录成功','success')
             return redirect(request.args.get('next') or url_for('main.index'))
         flash('密码错误','danger')
     return render_template('auth/login.html', form=form)
@@ -48,7 +49,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('退出登录成功.')
+    flash('退出登录成功.','success')
     return redirect(url_for('main.index'))
 
 
@@ -102,10 +103,10 @@ def change_password():
         if current_user.verify_password(form.old_password.data):
             current_user.password = form.password.data
             db.session.add(current_user)
-            flash('您的密码已更新.')
+            flash('您的密码已更新.','info')
             return redirect(url_for('main.index'))
         else:
-            flash('无效的密码.')
+            flash('无效的密码.','danger')
     return render_template("auth/change_password.html", form=form)
 
 @auth.route('/reset', methods=['GET', 'POST'])
@@ -136,7 +137,7 @@ def password_reset(token):
         if user is None:
             return redirect(url_for('main.index'))
         if user.reset_password(token, form.password.data):
-            flash('您的密码已更新.')
+            flash('您的密码已更新.','success')
             return redirect(url_for('auth.login'))
         else:
             return redirect(url_for('main.index'))
@@ -154,10 +155,10 @@ def change_email_request():
             send_email(new_email, 'Confirm your email address',
                        'auth/email/change_email',
                        user=current_user, token=token)
-            flash('已发送一封包含确认您的新电子邮件地址的说明的电子邮件。')
+            flash('已发送一封包含确认您的新电子邮件地址的说明的电子邮件。','info')
             return redirect(url_for('main.index'))
         else:
-            flash('无效的邮箱或密码')
+            flash('无效的邮箱或密码','danger')
     return render_template("auth/change_email.html", form=form)
 
 
@@ -165,7 +166,7 @@ def change_email_request():
 @login_required
 def change_email(token):
     if current_user.change_email(token):
-        flash('您的电子邮件地址已更新.')
+        flash('您的电子邮件地址已更新.','info')
     else:
-        flash('无效的请求.')
+        flash('无效的请求.','danger')
     return redirect(url_for('main.index'))
