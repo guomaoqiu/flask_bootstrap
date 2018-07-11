@@ -18,9 +18,6 @@ class Config:
     FLASKY_ADMIN = '2399447849@qq.com' # os.environ.get('FANXIANG_ADMIN')
 
 
-    #文件上传
- 
-
     @staticmethod
     def init_app(app):
         pass
@@ -28,10 +25,10 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    db_host = os.environ["MYSQL_DB_HOST"]
-    db_user = 'devopsdemo'
-    db_pass = '123.com'
-    db_name = 'devopsdemo'
+    db_host = 'localhost'
+    db_user = 'flask'
+    db_pass = 'flask'
+    db_name = 'flask4'
     SQLALCHEMY_DATABASE_URI = 'mysql://' + db_user + ':' + db_pass + '@' + db_host + '/' + db_name
     SQLALCHEMY_ECHO=True #用于显式地禁用或启用查询记录
 
