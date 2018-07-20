@@ -16,9 +16,7 @@ sys.setdefaultencoding('utf-8')
 def before_request():
     if current_user.is_authenticated:
         current_user.ping()
-        # print request.endpoint[:5]
-        # print request.endpoint
-        # print current_user.confirmed
+        
         if not current_user.confirmed \
                 and request.endpoint[:5] != 'auth.' \
                 and request.endpoint != 'static':
@@ -86,8 +84,6 @@ def confirm(token):
 @login_required
 def resend_confirmation():
     token = current_user.generate_confirmation_token()
-    print current_user.email
-    print
 
     send_email(current_user.email, 'Confirm Your Account',
                'auth/email/confirm', user=current_user, token=token)
