@@ -42,7 +42,7 @@ iron-celery==0.3.0
 iron-core==1.2.0
 iron-mq==0.9
 itsdangerous==0.24
-Jinja2==2.9.5
+Jinja2==2.11.3
 kombu==4.1.0
 livereload==2.4.1
 MySQL-python==1.2.5
